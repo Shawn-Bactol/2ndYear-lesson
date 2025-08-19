@@ -1,0 +1,83 @@
+import java.util.*;
+public class RunSavingsAccount {
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      SavingsAccount savings = new SavingsAccount();
+      
+     double b = 0;
+
+      System.out.println("Enter interest rate: ");
+      double a = sc.nextDouble();
+      System.out.println("Enter deposit amount: ");
+      b+= sc.nextDouble();
+      System.out.println("PRESS 'D' FOR ANOTHER DEPOSIT OR 'W' TO WIHDRAW: ");
+      String ans = sc.nextLine();
+      sc.next();
+      
+      if(ans.toUpperCase().equals("D")){
+        System.out.println("Enter deposit amount: ");
+      b+= sc.nextDouble();
+      }else if(ans="W"){
+       System.out.println("Enter amount to withdraw: ");
+       double c = sc.nextDouble();
+       savings.withdraw(c);
+      }
+
+
+      savings.SetInterest(a);
+      savings.deposit(b);
+      
+      
+      System.out.println("your balance is: "+savings.getBalance());
+      
+
+      
+      
+      
+
+    }
+}
+class SavingsAccount{
+
+    private double balance;
+    public static double  interestRate;
+    
+    public SavingsAccount(){
+
+        balance = 0;
+
+    }
+
+    public static void SetInterest(double newRate){
+     interestRate = newRate;
+    }
+
+    public static double getInterestRate(){
+        return interestRate;
+    }
+
+    public double getBalance(){
+        return balance;
+    }
+
+    public void deposit (double amount){
+     balance+=amount;
+    }
+
+    public double withdraw(double amount){
+        if(balance>=amount){
+        balance+=amount;
+        }else{
+            amount = 0;
+        }
+        return amount;
+    }
+
+    public void addInterest(){
+        double interest = balance*interestRate;
+        balance+=interest;
+    }
+    public static void showBalance(SavingsAccount account){
+        account.getBalance();
+    }
+}
