@@ -1,0 +1,50 @@
+class Desktop{
+    private String brand;
+    private String processor;
+    private int ramSize;
+
+    public void setBrand(String brand){
+        this.brand=brand;
+    }
+    public void setProcessor(String processor){
+        this.processor=processor;
+    }
+    public void setRamSize(int ramSize){
+        this.ramSize=ramSize;
+    }
+
+    public String getBrand(){
+        return brand;
+    }
+    public String getProcessor(){
+        return processor;
+    }
+    public int getRamSize(){
+        return ramSize;
+    }
+    public void upgradeRam(){
+        int ram = 32;
+        ram+=getRamSize();
+        System.out.println("RAM Size: "+ram+"GB");
+    }
+
+
+    public static void main(String[] args) {
+     Desktop dt = new Desktop ();
+     
+      String brand = "Lenovo";
+      String CPU = "intel core i5";
+      int ram = 32;
+
+     
+
+     dt.setBrand(brand);
+     dt.setProcessor(CPU);
+     dt.setRamSize(ram);
+
+     System.out.println("Brand: "+dt.getBrand());
+     System.out.println("Processor: "+dt.getProcessor());
+     dt.upgradeRam();
+
+    }
+}
