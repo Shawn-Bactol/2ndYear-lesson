@@ -1,0 +1,114 @@
+import java.util.*;
+
+class Hashing {
+    public static void main(String[] args) {
+        HashSet<String> courses = new HashSet<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("======== Hash Set ========");
+        System.out.print("Enter courses: \n\n");
+
+        for (int i = 0; i < 4; i++) {
+        String course;
+        int ctr = i + 1;
+        System.out.print("Course " + ctr + ": ");
+        course = sc.nextLine();
+        courses.add(course);
+        }
+        System.out.println("Courses: " + courses);
+        System.out.print("\nSearch course: ");
+        String courseSearch = sc.nextLine();
+
+        if (courses.contains(courseSearch)) {
+        System.out.println(courseSearch + " is available!");
+        } else {
+        System.out.println(courseSearch + " is not available");
+        }
+        System.out.print("Remove Course: ");
+        String courseRemove = sc.nextLine();
+        if (courses.contains(courseRemove)) {
+        System.out.println(courseRemove + " removed!");
+        courses.remove(courseRemove);
+        System.out.println("courses after removal" + courses);
+        } else {
+        System.out.println(courseRemove + " is not available!");
+        }
+
+        System.out.println("\n======= Hash Map ========");
+        Map<String, Integer> grades = new HashMap<>();
+
+        for (int i = 0; i < 3; i++) {
+            int ctr = i + 1;
+            System.out.print("Enter Student: " + ctr + " name: ");
+            String name = sc.nextLine();
+            int grade;
+            do {
+                System.out.print("Enter " + name + "'s grade: ");
+                grade = sc.nextInt();
+                sc.nextLine();
+                if (grade < 0) {
+                    System.out.println("grade cannot be lower than 0");
+                } else if (grade > 100) {
+                    System.out.println("grade cannot be greater than 100");
+                }
+                grades.put(name, grade);
+            } while (grade > 100 || grade < 0);
+
+        }
+
+        System.out.print("Grades: " + grades);
+
+        System.out.print("\nSearch Student: ");
+        String search = sc.nextLine();
+        if (grades.containsKey(search)) {
+            int g = grades.get(search);
+            System.out.print(search + "'s grades: " + g);
+        } else {
+            System.out.print(search + " is not found!");
+            for (int i = 0; i < 1; i++) {
+                int ctr = i + 1;
+                System.out.print("\nEnter Student: " + ctr + " name: ");
+                String name = sc.nextLine();
+
+                System.out.println("Enter " + name + "'s grade: ");
+                int grade = sc.nextInt();
+                sc.nextLine();
+
+                grades.put(name, grade);
+            }
+
+            System.out.print("Grades: " + grades);
+
+            System.out.print("\nSearch Student: ");
+            String search1 = sc.nextLine();
+            if (grades.containsKey(search1)) {
+                int g = grades.get(search1);
+                System.out.print(search1 + "'s grades: " + g);
+            } else {
+                System.out.print(search1 + " is not found!");
+            }
+
+        }
+        System.out.print("\nUpdate student: ");
+        String update = sc.nextLine();
+        if (grades.containsKey(update)) {
+            System.out.print("New grade: ");
+            int newGrade = sc.nextInt();
+            sc.nextLine();
+
+            grades.put(update, newGrade);
+            System.out.print("Grades after update: " + grades);
+        } else {
+            System.out.print(search + " is not found!");
+        }
+
+        System.out.print("\nRemove student: ");
+        String remove = sc.nextLine();
+        if (grades.containsKey(remove)) {
+            System.out.println(remove + " removed!");
+            grades.remove(remove);
+            System.out.print("Grades after removal: " + grades);
+        } else {
+            System.out.print(remove + " is not found!");
+        }
+    }
+}
