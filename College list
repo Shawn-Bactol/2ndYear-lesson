@@ -1,0 +1,180 @@
+import java.util.*;
+
+class Person{
+
+  private String name;
+  private String contactNum;
+  public void setName(String n){
+    this.name = n;
+  }
+  public String getName(){
+    return name;
+  }
+  public void setContactNum(String c){
+    this.contactNum=c;
+  }
+   public String getContactNum(){
+    return contactNum;
+   }
+}
+
+class Student extends Person{
+    public Student(){}
+    private String program;
+    private int yearLevel;
+
+    public void setProgram(String p){
+        this.program=p;
+    }
+    public String getProgram(){
+        return program;
+    }
+    public void setYearLevel(int y){
+      this.yearLevel=y;
+    }
+    public int getYearLevel(){
+        return yearLevel;
+    }
+}
+
+class Faculty extends Employee{
+   private boolean status;
+   public void setStatus(boolean s){
+   this.status=s;
+   }
+   public boolean isRegular(){
+    return status;
+   }
+}
+
+class Employee extends Person{
+   private double salary; 
+   private String  department;
+
+   public void setSalary(double s){
+    this.salary=s;
+   }
+   public double getSalary(){
+    return salary;
+   }
+   public void setDepartment(String d){
+    this.department=d;
+   }
+   public String getDepartment(){
+    return department;
+   }
+}
+
+
+public class CollegeList{
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Press [E] for employee, [F] for Faculty, or [S] for Student: ");
+
+        String ans = sc.nextLine().toUpperCase();
+
+        switch (ans){
+        case "E":
+        Employee em = new Employee();
+        System.out.println("\nEmployee name:");
+        String en = sc.nextLine();
+        System.out.println("Contact number:");
+        String cn = sc.nextLine();
+        System.out.println("Salary:");
+        double sl = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Department: ");
+        String dp = sc.nextLine();
+        em.setName(en);
+        em.setContactNum(cn);
+        em.setSalary(sl);
+        em.setDepartment(dp);
+        System.out.println("----------------------------------");
+        System.out.println("Name: "+em.getName());
+        System.out.println("Contact Number: "+em.getContactNum());
+        System.out.println("Salary: "+em.getSalary());
+        System.out.println("Department: "+em.getDepartment());
+        break;
+
+        case"F":
+        Faculty f = new Faculty();
+        System.out.println("Press [Y] if you are regular faculty member or [N] if not");
+        char c = sc.nextLine().toUpperCase().charAt(0);
+        if(c=='Y'){
+        f.setStatus(false);
+        if(f.isRegular()==false){
+        System.out.println("\nEmployee name:");
+        String en2 = sc.nextLine();
+        System.out.println("Contact number:");
+        String cn2 = sc.nextLine();
+        System.out.println("Salary:");
+        double sl2 = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Department: ");
+        String dp2 = sc.nextLine();
+        f.setName(en2);
+        f.setContactNum(cn2);
+        f.setSalary(sl2);
+        f.setDepartment(dp2);
+        System.out.println("----------------------------------");
+        System.out.println("Name: "+f.getName());
+        System.out.println("Contact Number: "+f.getContactNum());
+        System.out.println("Salary: "+f.getSalary());
+        System.out.println("Department: "+f.getDepartment());
+        System.out.println("Status: regular");
+        }
+        }else if(c=='N'){
+        
+        f.setStatus(true);
+        if(f.isRegular()==true){
+        System.out.println("\nEmployee name:");
+        String en2 = sc.nextLine();
+        System.out.println("Contact number:");
+        String cn2 = sc.nextLine();
+        System.out.println("Salary:");
+        double sl2 = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Department: ");
+        String dp2 = sc.nextLine();
+        sc.nextLine();
+        f.setName(en2);
+        f.setContactNum(cn2);
+        f.setSalary(sl2);
+        f.setDepartment(dp2);
+        System.out.println("----------------------------------");
+        System.out.println("Name: "+f.getName());
+        System.out.println("Contact Number: "+f.getContactNum());
+        System.out.println("Salary: "+f.getSalary());
+        System.out.println("Department: "+f.getDepartment());
+        System.out.println("Status: not regular");
+        }   
+        }
+        break;
+
+        case"S":
+        Student s = new Student();
+        System.out.println("\nStudent name:");
+        String sn = sc.nextLine();
+        System.out.println("Contact number:");
+        String scn = sc.nextLine();
+        System.out.println("Program:");
+        String p = sc.nextLine();
+        System.out.println("Year Level: ");
+        int yr = sc.nextInt();
+        s.setName(sn);
+        s.setContactNum(scn);
+        s.setProgram(p);
+        s.setYearLevel(yr);
+        System.out.println("----------------------------------");
+        System.out.println("Student Name: "+s.getName());
+        System.out.println("Contact Number: "+s.getContactNum());
+        System.out.println("Program: "+s.getProgram());
+        System.out.println("Year Level: "+s.getYearLevel());
+        break;
+       }
+
+    }
+    }
