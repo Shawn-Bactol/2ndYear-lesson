@@ -1,0 +1,95 @@
+import java.util.*;
+class BloodData{
+   private String bloodType;
+   private String rhFactor;
+
+   public BloodData(){
+      bloodType = "O";
+      rhFactor = "+";
+   } 
+
+   // with CONSTRUCTOR
+   // public BloodData(String bt, String rh){
+   //    bloodType=bt;
+   //    rhFactor=rh;
+   // }
+   public void display(){
+    System.out.println(getBloodType()+""+getRhFactor()+" is added to the blood bank. ");
+    }
+   
+   // with SETTER AND GETTER METHOD
+   public void setBloodType(String bloodType){
+    this.bloodType=bloodType;
+   }
+   public String getBloodType(){
+      return bloodType;
+   }
+   public void setRhFactor(String rhFactor){
+      this.rhFactor=rhFactor;
+   }
+   public String getRhFactor(){
+      return rhFactor;
+   }
+}
+
+public class RunBloodData{
+   public static void main(String[] args) {
+   Scanner sc = new Scanner(System.in);
+   String ans="";
+   String bt;
+   String rh;
+   boolean condition = false;
+   int x = 0;
+
+//    do{
+//    System.out.print("\nEnter blood type of patient: ");
+//    String bt = sc.nextLine();
+//    System.out.print("Enter the rhesus factor (+ or - ): ");
+//    String rh = sc.nextLine();
+//    BloodData bd = new BloodData(bt, rh);
+//    if(bt.isBlank() && rh.isBlank()){
+//       BloodData bdd = new BloodData();
+//      bdd.display();
+//    }else{
+//       bd.display();
+//    }
+//    System.out.println("\nPress Y to Enter another: ");
+//    ans = sc.nextLine();
+//   }while(ans.toUpperCase().equals("Y"));
+
+   do{
+   do{
+   System.out.print("\nEnter blood type of patient: ");
+   bt = sc.nextLine();
+   System.out.print("Enter the rhesus factor (+ or -): ");
+   rh = sc.nextLine();
+   if(bt.isEmpty()&&rh.isEmpty()){
+      BloodData empty = new BloodData();
+      empty.display();
+   }else{
+   switch (bt){
+      case "A":
+      BloodData bd = new BloodData();
+      bd.setBloodType(bt);
+      bd.setRhFactor(rh);
+      bd.display();
+      break;
+      case "B":
+      BloodData bd1 = new BloodData();
+      bd1.setBloodType(bt);
+      bd1.setRhFactor(rh);
+      bd1.display();
+      break;
+      default: 
+      System.out.println("Wrong bloodtype!");
+      condition = true;
+      break;
+   }
+   }
+   }while(condition);
+   x++;
+   }while(x<2);
+  
+
+   }
+   }
