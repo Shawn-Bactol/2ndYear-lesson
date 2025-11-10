@@ -1,0 +1,119 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class EventDriven extends JFrame implements ActionListener{
+    
+    FlowLayout fl = new FlowLayout();
+    FlowLayout fl2 = new FlowLayout();
+    Font bFont = new Font ("Arial", Font.BOLD,16);
+
+    JLabel label1 = new JLabel("First Name: ");
+    JTextField tf = new JTextField(15);
+    
+    JLabel label2 = new JLabel("Last Name:");
+    JTextField tf2 = new JTextField(15);
+    
+    JLabel label3 = new JLabel("Middle Name: ");
+    JTextField tf3 = new JTextField(15);
+
+    JLabel label4 = new JLabel("Mobile Number: ");
+    JTextField tf4 = new JTextField(15);
+
+    JLabel label5 = new JLabel("Email Address: ");
+    JTextField tf5 = new JTextField(15);
+
+    JButton bt = new JButton("Submit");
+    JButton bt2 = new JButton("Clear All");
+    JButton bt3 = new JButton("Okay");
+    
+    public EventDriven(){
+    
+     super("INPUT");
+     setSize(230, 350);
+     setLayout(fl);
+     label1.setFont(bFont);
+     label2.setFont(bFont);
+     label3.setFont(bFont);
+     label4.setFont(bFont);
+     label5.setFont(bFont);
+
+     add(label1);
+     add(tf);
+     add(label2);
+     add(tf2);
+     add(label3); 
+     add(tf3);
+     add(label4);
+     add(tf4);
+     add(label5);
+     add(tf5);
+     add(bt);
+     add(bt2);
+     
+
+     bt.addActionListener(this);
+     bt2.addActionListener(this);
+
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+
+        if(e.getSource()==bt){
+        String fname = tf.getText();
+        String lname = tf2.getText();
+        String mname = tf3.getText();
+        String mno = tf4.getText();
+        String ea = tf5.getText();
+       new EventDrivenOutput(fname, lname, mname, mno, ea);
+        }else if(e.getSource()==bt2){
+            tf.setText("");
+            tf2.setText("");
+            tf3.setText("");
+            tf4.setText("");
+            tf5.setText("");
+            
+        }
+
+    }
+
+    class EventDrivenOutput extends JFrame implements ActionListener{
+        public EventDrivenOutput(String fn, String ln, String mn, String mno, String ea){
+            super("OUTPUT");
+            setSize(300, 250);
+            setLayout(new BorderLayout());
+            JPanel jp = new JPanel(new GridLayout(6,1,5,5)); 
+            
+            jp.add(new JLabel("First Name:         "+fn));
+            jp.add(new JLabel("Last Name:         "+ln));
+            jp.add(new JLabel("Middle Name:     "+mn));
+            jp.add(new JLabel("Mobile Number: "+mno));
+            jp.add(new JLabel("Email address:  "+ea));
+            jp.add(new JLabel(" "));
+            
+            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            bt3.setPreferredSize(new Dimension(70, 30)); 
+
+            buttonPanel.add(bt3);
+            add(jp, BorderLayout.CENTER);
+            add(buttonPanel, BorderLayout.SOUTH);
+            bt3.addActionListener(this);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } 
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if(e.getSource()==bt3){
+                this.dispose();
+            }
+        }
+    }
+
+
+    public static void main(String[] args) {
+        EventDriven ed = new EventDriven();
+        ed.setVisible(true);
+    }
+}
