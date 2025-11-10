@@ -1,0 +1,32 @@
+abstract class PaymentMethod{
+    public abstract String processPayment(double amount);
+    public void generateReceipt(){
+        System.out.println("Receipt generated.");
+    }
+    }
+    class CreditCardPayment extends PaymentMethod{
+        @Override
+        public String processPayment(double amount){
+            return "Processing credit card payment of "+amount;
+        }
+    }
+    class PayPalPayment extends PaymentMethod{
+        @Override
+        public String processPayment(double amount){
+            return "Processing paypal payment of "+amount;
+        }
+    }
+
+class main{
+    public static void main(String[] args) {
+       PaymentMethod creditcard = new CreditCardPayment();
+       PaymentMethod paypal = new PayPalPayment();
+
+       System.out.println(creditcard.processPayment(100.0));
+       creditcard.generateReceipt();
+
+       System.out.println(paypal.processPayment(100.0));
+       paypal.generateReceipt();
+
+    }
+}
