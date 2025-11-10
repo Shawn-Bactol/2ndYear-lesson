@@ -1,0 +1,21 @@
+public class Sample{
+    String name;
+    int age;
+    public Sample(){
+        this("No name yet");
+    }
+    public Sample(String name){
+        this(name, 0);
+    }
+    public Sample(String name, int age){
+        this.name=name;
+        this.age=age;
+    }
+    public static void main(String[] args) {
+        Sample s = new Sample();
+        Sample s2 = new Sample("heh");
+        System.out.println(s.name);
+        System.out.println(s2.name);
+        
+    }
+}
