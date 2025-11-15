@@ -1,0 +1,163 @@
+import java.util.*;
+interface Combat{
+    void Gameplay();
+}
+interface RPSgame{
+    void gameplay();
+}
+
+interface Username{
+     void Name(String name);
+}
+
+public class Game implements Combat, RPSgame, Username{
+    public String name;
+    public void Gameplay(){
+
+    Scanner sc = new Scanner(System.in);
+    Random random = new Random();
+        String ans;
+        System.out.println("\n[Rock, Paper, Scissors - GAME]");
+        do{
+        String[] weapon = {"\nSCISSORS", "ROCK", "PAPER"};
+        System.out.println("\n[1] SCISSORS\n[2] ROCK\n[3] PAPER");
+        System.out.print("Pick your choice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        
+        if(choice ==1){
+          System.out.println("\nyou picked: "+weapon[0]);//sci
+          String enemy = weapon[random.nextInt(weapon.length)];
+          System.out.println("your enemy picked: "+enemy);
+
+          if(enemy==weapon[1]){
+          System.out.println("\nYOU LOSE.");
+          }else if(enemy==weapon[2]){
+            System.out.println("\nYOU WIN.");
+          }else if(enemy==weapon[0]){
+            System.out.println("\nDRAW.");
+          }
+          
+        }if (choice==2){
+            System.out.println("\nyou picked: "+weapon[1]);//rock
+            String enemy = weapon[random.nextInt(weapon.length)];
+            System.out.println("your enemy picked: "+enemy);
+
+          if(enemy==weapon[1]){
+          System.out.println("\nDRAW.");
+          }else if(enemy==weapon[2]){
+            System.out.println("\nYOU LOSE.");
+          }else if(enemy==weapon[0]){
+            System.out.println("\nYOU WIN.");
+          }
+        }if(choice==3){
+            System.out.println("\nyou picked: "+weapon[2]);//paper
+            String enemy = weapon[random.nextInt(weapon.length)];
+            System.out.println("your enemy picked: "+enemy);
+
+          if(enemy==weapon[2]){
+          System.out.println("\nDRAW.");
+          }else if(enemy==weapon[1]){
+            System.out.println("\nYOU WIN.");
+          }else if(enemy==weapon[0]){
+            System.out.println("\nYOU LOSE.");
+        }
+        }
+        System.out.println("\nPlay again? ");
+        System.out.println("- Press Y to continue\n- Press Q to quit");
+        ans = sc.nextLine();
+        if (ans.toUpperCase().equals("Q")){
+            System.out.println("You quit the game."); 
+            System.exit(0);
+        }
+        }while(ans.toUpperCase().equals("Y"));
+    }
+
+    public void gameplay(){
+     Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        
+        int Ehealth = 100;
+        int Phealth = 100;
+
+       System.out.println("\n[COMBAT - GAME]");
+       System.out.println("\nACTIVATING COMBAT MODE!");
+       System.out.println("YOUR health: ["+Phealth+"]");
+       System.out.println("ENEMY health: ["+Ehealth+"]");
+    
+       do{
+        int Pnum = random.nextInt(10);
+        int Enum = random.nextInt(10);
+       System.out.println("\n[1] to Attack - deals dmg to enemy.\n[2] to Heal - recover some health.\n[3] to Escape - run away from the battle.");
+       int action = sc.nextInt();
+       
+       if(action==1){
+       
+        Ehealth = Ehealth -= Pnum; 
+        System.out.println("\nYOU deal "+Pnum+" dmg! to enemy");
+        Phealth = Phealth -= Enum;
+        System.out.println("ENEMY hits YOU "+Enum+" dmg!");
+        System.out.println("YOUR current health: ["+Phealth+"]");
+        System.out.println("ENEMY current health: ["+Ehealth+"]");
+
+       }else if(action==2){
+        System.out.println("Health recovered: ["+Pnum+"]*");
+        Phealth = Phealth + Pnum+1;
+        System.out.println("YOUR current Health: ["+Phealth+"]");
+       }else if(action==3){
+        System.out.println("YOU escaped the battle. Game Over.");
+        System.exit(0);
+       }
+       if(Ehealth<0){
+        System.out.println("\nYOU won.");
+       }else if(Phealth<0){
+        System.out.println("\nYOU lose. Game Over.");
+       }else if(Ehealth<=0&&Phealth<=0){
+        System.out.println("\nDouble K.O");
+       }else if(Phealth>=100){
+        System.out.println("Maximum Health recovered. Cannot use heal.");
+        Phealth=100;
+       }else if(Ehealth==50||Ehealth==51||Ehealth==52){
+        System.out.println("\nENEMY'S HEALED: ["+Enum+"] !");
+        Ehealth = Ehealth += Enum+1;
+        System.out.println("ENEMY'S CURRENT HEALTH: ["+Ehealth+"]");
+       }
+       }while(Ehealth>0&&Phealth>0);
+    }
+
+    public void Name(String name){
+        this.name=name;
+    }
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Game intro = new Game();
+        Game g2 = new Game();
+        Game g1 = new Game();
+        
+        System.out.print("\nEnter your name: ");
+        String name = sc.nextLine();
+        intro.Name(name);
+        
+        System.out.println("Press 1 or 2 to select your game mode.");
+        System.out.println("1 - COMBAT");
+        System.out.println("2 - Rock, Paper, Scissors");
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        if(choice==2){
+        System.out.println("Press P to start playing, "+name);
+        String play = sc.nextLine();
+        if (play.toUpperCase().equals("P")){
+            g2.Gameplay();
+        }
+        }else if(choice==1){
+        System.out.println("Press P to start playing, "+name);
+        String play = sc.nextLine();
+        if (play.toUpperCase().equals("P")){
+            g1.gameplay();
+        }
+        }
+    }
+}
